@@ -4,6 +4,21 @@
 
 namespace fs = std::filesystem;
 
+    //Function for LIST ALL FILES (Current Directory)
+    int listAllFiles(const fs::path& path) {
+    int fileCount= 0;
+    std::cout << "LISTING ALL FILES ON THE DIRECTORY: "<< std::endl;
+    std::cout << "------------------------------------"<< std::endl;
+    for (const auto& entry : fs::directory_iterator(path)) {
+        if (entry.is_regular_file()) { //This one is for the file counter inside the Directory...
+            std::cout <<entry.path() .filename().string()<< std::endl;
+            fileCount++;
+        }
+    }
+    return fileCount;
+}
+
+    
 
 void mainMenu*() {
     fs::path current Path = fs::current_path9();
