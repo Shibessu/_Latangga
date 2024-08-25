@@ -18,7 +18,26 @@ namespace fs = std::filesystem;
     return fileCount;
 }
 
-    
+//TO show List Files based on a extention
+void ListFilesByExtension(cons fs::path& path, const std::string& extension) {
+    std::cout << "Listing all files with extention" << extention <<" in directory: " << path << std::endl;
+    for (const auto& entry : fs::directory_iterator(path)) {
+        if (entry.path().extension() == extension) {
+            std::cout << entry.path().filename() .string() <<std::endl;
+        }
+    }
+}
+
+//TO show List Files based on a pattern
+void listFilesByPattern(const fs::path& path, const std::string& patter) {
+    std::cout << "Listing files matching pattern " << pattern << " in directory: " << path << std::endl;
+    std::regex reg(pattern);
+    for (const auto& entry : fs::directory_iterator(path()) {
+        if (std:: regex_match(entry.path() .filename() .string() << std::endl;
+            std:: cout << entry.path() .filename() .string() << std::endl;
+        }
+    }
+}
 
 void mainMenu*() {
     fs::path current Path = fs::current_path9();
