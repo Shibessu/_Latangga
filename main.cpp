@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include <string>
+#include <regex>
 
 namespace fs = std::filesystem;
 
