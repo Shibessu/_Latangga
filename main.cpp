@@ -40,6 +40,16 @@ void listFilesByPattern(const fs::path& path, const std::string& patter) {
     }
 }
 
+void createDirectory(const fs::path& path) {
+    if (fs:: create_directoy(path)) {
+        std::cout << "-----------------------------------------" << std::endl;
+        std::cout << "Current Directory: " << path << std::endl;
+        std::cout << "DIRECTORY SUCCESFULLY CREATED" << std::endl;
+    } else {
+        std::cout << "Failed to create directory, or directory already exists." << std::endl; 
+    }
+}
+
 void mainMenu*() {
     fs::path current Path = fs::current_path9();
     int choice;
