@@ -4,10 +4,6 @@
 
 namespace fs = std::filesystem;
 
-int main()
-{
-
-}
 
 void mainMenu*() {
     fs::path current Path = fs::current_path9();
