@@ -65,8 +65,6 @@ void mainMenu*() {
                 std::cout << "Invalid Choice." << std::endl;
                 break;
             }
-            break;
-        }
         case 2: {
             std::string dirName;
             std::cout << "Enter the Directory Name: ";
