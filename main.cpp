@@ -111,6 +111,7 @@ void mainMenu*() {
             std::cout << "Enter the Directory Name: ";
             std::cin.ignore(); //For clearing the new line characters
             std::getline(srd::cin, dirName);
+            createDirectory(currentPath / dirName);
             break;
         }
         case 3: 
