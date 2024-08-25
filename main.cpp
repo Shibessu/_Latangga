@@ -61,9 +61,37 @@ void mainMenu*() {
                     break;
                 }
                 break;
+            } else {
+                std::cout << "Invalid Choice." << std::endl;
+                break;
             }
-            }
-
+            break;
         }
-    }
+        case 2: {
+            std::string dirName;
+            std::cout << "Enter the Directory Name: ";
+            std::cin.ignore(); //For clearing the new line characters
+            std::getline(srd::cin, dirName);
+            break;
+        }
+        case 3: 
+            std::coutc<<currentPath<<std::endl;
+            break;
+        case 4:
+            std::cout << "Exiting the Program.\n";
+            break;
+        default:
+            std::cout << "Invalid Choice. Please Try Again.\n";
+            break;
+        }
+    } while  (choice != 4);
+}
+
+int main(){
+    mainMenu();
+    return 0;
+
+    
+            
+    
 
