@@ -20,9 +20,9 @@ namespace fs = std::filesystem;
     return fileCount;
 }
 
-//TO show List Files based on a extention
-void ListFilesByExtension(cons fs::path& path, const std::string& extension) {
-    std::cout << "Listing all files with extention" << extention <<" in directory: " << path << std::endl;
+//TO show List Files based on a extension
+void listFilesByExtension(const fs::path& path, const std::string& extension) {
+    std::cout << "Listing all files with extention" << extension <<" in directory: " << path << std::endl;
     for (const auto& entry : fs::directory_iterator(path)) {
         if (entry.path().extension() == extension) {
             std::cout << entry.path().filename() .string() <<std::endl;
@@ -31,21 +31,21 @@ void ListFilesByExtension(cons fs::path& path, const std::string& extension) {
 }
 
 //TO show List Files based on a pattern
-void listFilesByPattern(const fs::path& path, const std::string& patter) {
+void listFilesByPattern(const fs::path& path, const std::string& pattern) {
     std::cout << "Listing files matching pattern " << pattern << " in directory: " << path << std::endl;
     std::regex reg(pattern);
-    for (const auto& entry : fs::directory_iterator(path()) {
-        if (std:: regex_match(entry.path() .filename() .string() << std::endl;
+    for (const auto& entry : fs::directory_iterator(path)) {
+        if (std:: regex_match(entry.path() .filename() .string(), reg() {
             std:: cout << entry.path() .filename() .string() << std::endl;
         }
     }
 }
 
 void createDirectory(const fs::path& path) {
-    if (fs:: create_directoy(path)) {
+    if (fs:: create_directory(path)) {
         std::cout << "-----------------------------------------" << std::endl;
         std::cout << "Current Directory: " << path << std::endl;
-        std::cout << "DIRECTORY SUCCESFULLY CREATED" << std::endl;
+        std::cout << "DIRECTORY SUCCESSFULLY CREATED" << std::endl;
     } else {
         std::cout << "Failed to create directory, or directory already exists." << std::endl; 
     }
@@ -64,8 +64,8 @@ void changeDirectory(fs::path& currentPath) {
 
     switch (option) {
         case 1:
-            if currentPath = currentpath.has_parent_path()) {
-                curentPath = currentPath.parent_path();
+            if (currentPath.has_parent_path()) {
+                currentPath = currentPath.parent_path();
                 std::cout << "Moved to parent directory: " <<currentPath << std::endl;    
             } else {
                 std::cout << "Already at the root directory." << std::endl;
@@ -80,7 +80,7 @@ void changeDirectory(fs::path& currentPath) {
             std::cout << "Please Enter The Directory Name: ";
             std::cin.ignore();
             std::getline(std::cin, newPath);
-            fs::path newDirectoryPath = fs::absolute(currentPath/nePath);
+            fs::path newDirectoryPath = fs::absolute(currentPath/newPath);
             if (fs::exists(newDirectoryPath) && fs::is_directory(newDirectoryPath)) {
                 currentPath = newDirectoryPath;
                 std::cout << "Current Directory: "<< currentPath << std::endl;
@@ -94,9 +94,9 @@ void changeDirectory(fs::path& currentPath) {
             break;
         }           
     }
-
+}
 //Fcae of the Code
-void mainMenu*() {
+void mainMenu() {
     fs::path current Path = fs::current_path9();
     int choice;
 
@@ -148,20 +148,17 @@ void mainMenu*() {
                     break;
                 }
                 break;
-            } else {
-                std::cout << "Invalid Choice." << std::endl;
-                break;
             }
         case 2: {
             std::string dirName;
             std::cout << "Enter the Directory Name: ";
             std::cin.ignore(); //For clearing the new line characters
-            std::getline(srd::cin, dirName);
+            std::getline(std::cin, dirName);
             createDirectory(currentPath / dirName);
             break;
         }
         case 3: 
-            std::coutc<<currentPath<<std::endl;
+            std::cout<<currentPath<<std::endl;
             changeDirectory(currentPath);
             break;
         case 4:
@@ -174,10 +171,11 @@ void mainMenu*() {
     } while  (choice != 4);
 }
 
+
 int main(){
     mainMenu();
     return 0;
-
+}
     
             
     
