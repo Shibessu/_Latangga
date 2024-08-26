@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <string>
 #include <regex>
+#include <vector>
 
 namespace fs = std::filesystem;
 
@@ -50,6 +51,51 @@ void createDirectory(const fs::path& path) {
     }
 }
 
+//To change the Working Directory
+void changeDirectory(fs::path& currentPath) {
+    int option;
+    std::cout << "CHANGE DIRECTORY\n";
+    std::cout << "--------------------\n";
+    std::cout << "1. Step by Step Backward\n";
+    std::cout << "2. Go to Root Directory\n";
+    std::cout << "3. Forward Directory\n";
+    std::cout << "Enter the number: ";
+    std::cin >> option;
+
+    switch (option) {
+        case 1:
+            if currentPath = currentpath.has_parent_path()) {
+                curentPath = currentPath.parent_path();
+                std::cout << "Moved to parent directory: " <<currentPath << std::endl;    
+            } else {
+                std::cout << "Already at the root directory." << std::endl;
+            }
+            break;
+        case 2:
+            currentPath = currentPath.root_path();
+            std::cout<< "Moved to the root directory: " << currentPath << std::endl;
+            break;
+        case 3: {
+            std::string newPath;
+            std::cout << "Please Enter The Directory Name: ";
+            std::cin.ignore();
+            std::getline(std::cin, newPath);
+            fs::path newDirectoryPath = fs::absolute(currentPath/nePath);
+            if (fs::exists(newDirectoryPath) && fs::is_directory(newDirectoryPath)) {
+                currentPath = newDirectoryPath;
+                std::cout << "Current Directory: "<< currentPath << std::endl;
+            } else {
+                std::cout << "Invalid directory!" << std::endl;
+            }
+            break;
+        }
+        default:
+            std::cout << "Invalid option." << std::endl;
+            break;
+        }           
+    }
+
+//Fcae of the Code
 void mainMenu*() {
     fs::path current Path = fs::current_path9();
     int choice;
@@ -116,6 +162,7 @@ void mainMenu*() {
         }
         case 3: 
             std::coutc<<currentPath<<std::endl;
+            changeDirectory(currentPath);
             break;
         case 4:
             std::cout << "Exiting the Program.\n";
