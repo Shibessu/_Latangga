@@ -35,7 +35,7 @@ void listFilesByPattern(const fs::path& path, const std::string& pattern) {
     std::cout << "Listing files matching pattern " << pattern << " in directory: " << path << std::endl;
     std::regex reg(pattern);
     for (const auto& entry : fs::directory_iterator(path)) {
-        if (std:: regex_match(entry.path() .filename() .string(), reg() {
+        if (std:: regex_match(entry.path() .filename() .string(), reg)) {
             std:: cout << entry.path() .filename() .string() << std::endl;
         }
     }
@@ -97,7 +97,7 @@ void changeDirectory(fs::path& currentPath) {
 }
 //Fcae of the Code
 void mainMenu() {
-    fs::path current Path = fs::current_path9();
+    fs::path current Path = fs::current_path();
     int choice;
 
     do {
@@ -147,8 +147,6 @@ void mainMenu() {
                     std::cout << "Invalid choice." << std::endl;
                     break;
                 }
-                break;
-            }
         case 2: {
             std::string dirName;
             std::cout << "Enter the Directory Name: ";
