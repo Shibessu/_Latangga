@@ -7,17 +7,17 @@
 namespace fs = std::filesystem;
 
     //Function for LIST ALL FILES (Current Directory)
-    int listAllFiles(const fs::path& path) {
-    int fileCount= 0;
-    std::cout << "LISTING ALL FILES ON THE DIRECTORY: "<< std::endl;
+int listAllFiles(const fs::path& path) {
+    int directoryCount= 0;
+    std::cout << "LISTING ALL DIRECTORIES: "<< std::endl;
     std::cout << "------------------------------------"<< std::endl;
     for (const auto& entry : fs::directory_iterator(path)) {
         if (entry.is_regular_file()) { //This one is for the file counter inside the Directory...
             std::cout <<entry.path() .filename().string()<< std::endl;
-            fileCount++;
+            directoryCount++;
         }
     }
-    return fileCount;
+    return directoryCount;
 }
 
 //TO show List Files based on a extension
@@ -122,31 +122,37 @@ void mainMenu() {
             std::cout << "3. List of the Name Wise\n";
             std::cout << "Enter your choice: ";
             std::cin >> listChoice;
+            
 
-            if (listChoice == 1) {
-                std::cout << "List of All (*.*) Files\n";
-                    int totalList = listAllFiles(currentPath);  // Get and print files
-                    std::cout << "--------------------------------------- "<< std::endl;
-                    std::cout << "Total Files: " << totalList << std::endl;  // Print total count
-  // Correct the syntax
-                    break;
-                } else if (listChoice == 2) {
-                    std::string extension;
-                    std::cout << "Enter the file extension (e.g., .txt): ";
-                    std::cin >> extension;
-                    listFilesByExtension(currentPath, extension);
-                    break;
-                } else if (listChoice == 3) {
-                    std::string pattern;
-                    std::cout << "Enter the file pattern (e.g., .*\\.txt): ";
-                    std::cin.ignore();
-                    std::getline(std::cin, pattern);
-                    listFilesByPattern(currentPath, pattern);
-                    break;
-                } else {
-                    std::cout << "Invalid choice." << std::endl;
-                    break;
+            iswitch (listChoice) {
+                    case 1: {
+                        std::cout << "List of All Files\n";
+                        int totalList = listAllDirectories(currentPath);
+                        std::cout << "---------------------------------------" << std::endl;
+                        std::cout << "Total Files: " << totalList << std::endl;
+                        break;
+                    }
+                    case 2: {
+                        std::string extension;
+                        std::cout << "Enter the file extension (e.g., .txt): ";
+                        std::cin >> extension;
+                        listFilesByExtension(currentPath, extension);
+                        break;
+                    }
+                    case 3: {
+                        std::string pattern;
+                        std::cout << "Enter the file pattern (e.g., .*\\.txt): ";
+                        std::cin.ignore();
+                        std::getline(std::cin, pattern);
+                        listFilesByPattern(currentPath, pattern);
+                        break;
+                    }
+                    default:
+                        std::cout << "Invalid choice." << std::endl;
+                        break;
                 }
+                break;
+        }
         case 2: {
             std::string dirName;
             std::cout << "Enter the Directory Name: ";
@@ -169,12 +175,7 @@ void mainMenu() {
     } while  (choice != 4);
 }
 
-
 int main(){
     mainMenu();
     return 0;
 }
-    
-            
-    
-
